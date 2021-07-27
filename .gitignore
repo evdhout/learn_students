@@ -1,3 +1,19 @@
+###
+# Project excludes
+###
+data/*
+!data/README.md
+!data/student-sample.csv
+!data/student-sample-*.png
+!data/student-sample-*.jpg
+
+*.ini
+!*-sample.ini
+
+###
+# Standard Python excludes
+###
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,6 +143,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# never add the real config.ini file
-/config.ini
