@@ -1,2 +1,2 @@
-# learn_students
+# kys - Know Your Students
 Learn student names by using pictures
