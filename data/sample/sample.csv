@@ -12,7 +12,6 @@ student_id;group;first_name;infix;last_name;gender;date_of_birth
 000011;test;Lamp;of;Light;F;2005-01-12
 000012;test;Candle;;Light;F;2005-01-12
 000013;test;Kitty;the;Kitten;F;2005-01-12
-000014;test;Chiny;;Chinese;F;2005-01-12
 000015;test;Cloud;without;Rain;F;2005-01-12
 000016;test;Lady;;Bug;M;2005-01-12
 000017;test;Cup;of;Coffee;F;2005-01-12
