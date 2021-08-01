@@ -3,9 +3,8 @@
 ###
 data/*
 !data/README.md
-!data/student-sample.csv
-!data/student-sample-*.png
-!data/student-sample-*.jpg
+!data/sample
+!data/sample/*
 
 *.ini
 !*-sample.ini
