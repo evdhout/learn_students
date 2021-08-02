@@ -1,9 +1,6 @@
 #!python3
 from kys.models.configuration import Configuration
-from kys.models.student import Student
 from kys.models.students import Students
-from kys.models.gender import Gender
-from kys.controllers.students_csv import StudentsCSV
 from kys.controllers.main_controller import MainController
 
 

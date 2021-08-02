@@ -48,8 +48,8 @@ class Students:
             print(f'student id {student_id} not found')
             return None
 
-    def get_random_students(self, student:Student, count: int = 4):
-        pick_list: [Student] = []
+    def get_random_student_alternatives(self, student: Student, count: int = 4):
+        pick_list: [Student]
         if student.is_female():
             pick_list = self.female_students
         else:

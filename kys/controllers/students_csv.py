@@ -1,8 +1,6 @@
 import csv
 import datetime
 
-from tkinter import StringVar
-
 from kys.models.configuration import Configuration
 from kys.models.gender import Gender
 from kys.models.student import Student
@@ -10,10 +8,9 @@ from kys.models.students import Students
 
 
 class StudentsCSV:
-    def __init__(self, students: Students, config: Configuration, status: StringVar):
+    def __init__(self, students: Students, config: Configuration):
         self.students: Students = students
         self.config: Configuration = config
-        self.status: StringVar = status
 
         self._read_csv()
 
@@ -25,7 +22,6 @@ class StudentsCSV:
 
             infix_present: bool = self.config.csv['infix'] in reader.fieldnames
             for row in reader:
-                # self.status.set(f"Loading student {self.config.csv['first_name']}")
                 self.students.add_student(
                     Student(student_id=row[self.config.csv['student_id']],
                             first_name=row[self.config.csv['first_name']],
