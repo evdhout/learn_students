@@ -5,6 +5,7 @@ from kys.models.student import Student
 from kys.models.students import Students
 from kys.views.mc_view import MCView
 from kys.views.main_view import MainView
+from kys.controllers.quiz_controller import QuizController
 
 
 class ButtonStyle(Enum):
@@ -13,7 +14,7 @@ class ButtonStyle(Enum):
     WRONG = "wrong"
 
 
-class MCController:
+class MCController(QuizController):
     BUTTON_A = 0
     BUTTON_B = 1
     BUTTON_C = 2
@@ -21,43 +22,22 @@ class MCController:
     OPTION = {'A': 0, 'B': 1, 'C': 2, 'D': 4}
 
     def __init__(self, master: MainView, students: Students):
+        super().__init__(master=master, students=students)
 
-        self.students: Students = students
-        self.master: MainView = master
+        self.quiz_view: MCView = MCView(self.master,
+                                        start_command=self.start_quiz,
+                                        next_command=self.show_next_student,
+                                        choice_button_command=self.chosen_student_name)
 
-        self.mc_view: MCView = MCView(self.master,
-                                      start_command=self.start_quiz,
-                                      next_command=self.show_next_student,
-                                      choice_button_command=self.chosen_student_name)
-
-        self.total_correct_names: int = 0
-        self.total_wrong_names: int = 0
-        self.total_students: int = len(self.students)
-        self.students_iterator = None
-
-        self.current_student: Student or None = None
         self.current_student_list: [Student] = None
 
-        self.mc_view.clear_window()
-
-    def start_quiz(self):
-        self.total_correct_names = 0
-        self.total_wrong_names = 0
-        self.mc_view.set_score()
-        self.students_iterator = iter(self.students)
-        self.show_next_student()
-        self.mc_view.update_start_button(text='Restart Quiz')
+        self.quiz_view.clear_window()
 
     def show_next_student(self):
-        try:
-            self.current_student = next(self.students_iterator)
-        except StopIteration:
-            self.end_of_quiz()
-            return
+        super().show_next_student()
 
-        # print('Attempting to display:')
-        # print(self.current_student)
-        self.mc_view.show_student_image(image=self.current_student.image)
+        if self.current_student is None:
+            return
 
         self.current_student_list: [Student] = [self.current_student]
         self.current_student_list.extend(self.students.get_random_student_alternatives(student=self.current_student,
@@ -66,7 +46,7 @@ class MCController:
         print(f'Chosen student: {self.current_student.get_full_name()}')
         print([s.get_full_name() for s in self.current_student_list])
 
-        self.mc_view.ask_question(student_names=[s.get_full_name() for s in self.current_student_list])
+        self.quiz_view.ask_question(student_names=[s.get_full_name() for s in self.current_student_list])
 
     def chosen_student_name(self, chosen: str):
         print(f'button {chosen} clicked')
@@ -79,10 +59,7 @@ class MCController:
         else:
             self.total_wrong_names += 1
 
-        self.mc_view.show_student_result(result=result,
-                                         student_name=self.current_student.get_full_name(),
-                                         correct=self.total_correct_names,
-                                         wrong=self.total_wrong_names)
-
-    def end_of_quiz(self):
-        self.mc_view.show_final_score(correct=self.total_correct_names, wrong=self.total_wrong_names)
+        self.quiz_view.show_student_result(result=result,
+                                           student_name=self.current_student.get_full_name(),
+                                           correct=self.total_correct_names,
+                                           wrong=self.total_wrong_names)

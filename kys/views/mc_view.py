@@ -1,7 +1,7 @@
-from tkinter import Toplevel, Label, Button, Canvas, StringVar, Frame, NORMAL, DISABLED
-from PIL import ImageTk
-from kys.views.main_view import MainView
+from tkinter import Label, Button
 from typing import Callable
+
+from kys.views.main_view import MainView
 from kys.views.quiz_view import QuizView
 
 
@@ -43,103 +43,36 @@ class MCView(QuizView):
         self.button_quit.pack()
 
     def clear_window(self):
+        super().clear_window()
         for key, student_name_button in self.student_name_buttons.items():
             student_name_button.config(text=f'--- {key} ---')
+        self.unbind_options()
 
-        self.question_text.set('--- Waiting to start game ---')
-
-        self.set_button_state(name_button_state=DISABLED, next_button_state=DISABLED)
-
-        self.student_image_canvas.delete("all")
-
-    def set_button_state(self,
-                         name_button_state=DISABLED,
-                         next_button_state=DISABLED):
+    def bind_options(self):
         for key, button in self.student_name_buttons.items():
-            if name_button_state == DISABLED:
-                button.config(command=lambda: None)
-            else:
-                button.config(command=lambda k=key: self.choice_button_command(k))
-        if name_button_state == DISABLED:
-            self.unbind_option_keys()
-        else:
-            self.bind_option_keys()
-
-        if next_button_state == DISABLED:
-            self.button_next.config(command=lambda: None)
-            self.unbind_next_key()
-        else:
-            self.button_next.config(command=self.next_command)
-            self.bind_next_key()
-
-    def bind_option_keys(self):
-        for key in self.student_name_buttons:
             self.master.bind(sequence=key, func=lambda e, k=key: self.choice_button_command(chosen=k))
             self.master.bind(sequence=key.lower(), func=lambda e, k=key: self.choice_button_command(chosen=k))
+            button.config(command=lambda k=key: self.choice_button_command(k))
 
-    def unbind_option_keys(self):
-        for key in self.student_name_buttons:
+    def unbind_options(self):
+        for key, button in self.student_name_buttons.items():
             self.master.unbind(sequence=key)
             self.master.unbind(sequence=key.lower())
-
-    def bind_next_key(self):
-        self.master.bind(sequence='n', func=lambda e: self.next_command())
-        self.master.bind(sequence='N', func=lambda e: self.next_command())
-
-    def unbind_next_key(self):
-        self.master.unbind(sequence='n')
-        self.master.unbind(sequence='N')
-
-    def set_score(self, correct: int = 0, wrong: int = 0):
-        self.student_correct_count.set(correct)
-        self.student_wrong_count.set(wrong)
-
-    def update_start_button(self, text: str):
-        self.button_start.config(text=text)
-
-    def show_student_image(self, image: ImageTk):
-        self.student_image_canvas.delete('all')
-        self.student_image_canvas.config(background='grey')
-        self.student_image_canvas.create_image(200, 200, image=image, anchor='center')
+            button.config(command=lambda: None)
 
     def show_student_result(self, result: bool, student_name: str, correct: int, wrong: int):
-        self.set_button_state(name_button_state=DISABLED, next_button_state=NORMAL)
-        self.student_image_canvas.config(background=f'{"green" if result else "red"}')
-        self.question_text.set(f'{"Correct" if result else "WRONG"}! This is {student_name} ')
-        self.student_correct_count.set(f'{correct}')
-        self.student_wrong_count.set(f'{wrong}')
+        super().show_student_result(result=result, student_name=student_name, correct=correct, wrong=wrong)
+        self.unbind_options()
 
     def set_student_names(self, student_names: [str]):
         for key, student_name_button in self.student_name_buttons.items():
             student_name_button.config(text=student_names.pop(0))
 
-    def ask_question(self, student_names: [str]):
+    def ask_question(self, student_names: [str], *args, **kwargs):
+        super().ask_question()
         self.set_student_names(student_names=student_names)
-        self.set_button_state(name_button_state=NORMAL, next_button_state=DISABLED)
-        self.question_text.set('Who is this student?')
+        self.bind_options()
 
     def show_final_score(self, correct: int, wrong: int):
-        self.student_image_canvas.delete("all")
-
-        correct_percentage = round((correct / (correct + wrong)) * 100)
-        text_color = "white"
-        if correct_percentage < 30:
-            self.student_image_canvas.config(background="red")
-        elif correct_percentage < 55:
-            self.student_image_canvas.config(background="orange")
-        elif correct_percentage < 90:
-            self.student_image_canvas.config(background="yellow")
-            text_color = "black"
-        else:
-            self.student_image_canvas.config(background="green")
-
-        self.student_image_canvas.create_text(200, 200,
-                                              text=f'{correct_percentage}% correct',
-                                              font=("Helvetica", 50),
-                                              fill=text_color,
-                                              anchor='center')
-        self.student_image_canvas.create_text(200, 230,
-                                              text=f'{correct} / {correct + wrong}',
-                                              font=("Helvetica", 25),
-                                              fill=text_color,
-                                              anchor='center')
+        super().show_final_score(correct=correct, wrong=wrong)
+        self.unbind_options()
