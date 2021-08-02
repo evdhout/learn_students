@@ -22,10 +22,14 @@ class MainView:
 
         self.mc_button_image: Image = Image.open('resources/kys-mc-button.png')
         self.mc_button_image_tk: ImageTk = ImageTk.PhotoImage(self.mc_button_image, master=self.root)
-        self.button_play_mc = Button(self.mainframe, text="MC Quiz", image=self.mc_button_image_tk, compound=TOP)
+        self.mc_button = Button(self.mainframe, text="MC Quiz", image=self.mc_button_image_tk, compound=TOP)
 
-        self.button_play_mc.grid(column=0, row=2)
-        self.button_play_mc.grid(column=1, row=2)
+        # self.type_button_image: Image = Image.open('resources/kys-type-button.png')
+        # self.type_button_image_tk: ImageTk = ImageTk.PhotoImage(self.type_button_image, master=self.root)
+        # self.type_button = Button(self.mainframe, text="Type Quiz", image=self.type_button_image_tk, compound=TOP)
+
+        self.mc_button.grid(column=1, row=2)
+        # self.type_button.grid(column=2, row=2)
 
     def mainloop(self):
         self.root.mainloop()
@@ -33,8 +37,9 @@ class MainView:
     def update_loading_status(self, status: str):
         self.loading_status.set(status)
 
-    def bind_mc_button(self, callback: Callable):
-        self.button_play_mc.config(command=callback)
+    def bind_buttons(self, mc_callback: Callable):  # , type_callback: Callable):
+        self.mc_button.config(command=mc_callback)
+        # self.type_button.config(command=type_callback)
 
     def bind_after_load(self, callback: Callable):
         self.root.bind('<Map>', lambda e: callback())

@@ -13,7 +13,7 @@ class MainController:
         self.quiz_controller = None
 
         self.main_view: MainView = MainView()
-        self.main_view.bind_mc_button(self.open_mc_window)
+        self.main_view.bind_buttons(mc_callback=self.open_mc_window)
         self.main_view.bind_after_load(self.load_students)
         self.main_view.mainloop()
 
@@ -28,3 +28,4 @@ class MainController:
 
     def open_mc_window(self):
         self.quiz_controller = MCController(self.main_view, students=self.students)
+
