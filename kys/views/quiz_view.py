@@ -18,6 +18,7 @@ class QuizView:
                                            bd=2, bg="grey", relief="ridge")
 
         self.question_text: StringVar = StringVar(self.master, name='Question text')
+        self.question_text.set('Waiting for quiz to start')
         self.question = Label(master=self.quiz_frame, textvariable=self.question_text)
 
         # the scoreboard
