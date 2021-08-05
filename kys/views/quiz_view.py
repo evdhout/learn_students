@@ -74,7 +74,7 @@ class QuizView:
 
     def show_student_result(self, result: bool, student_name: str, correct: int, wrong: int):
         self.student_image_canvas.config(background=f'{"green" if result else "red"}')
-        self.question_text.set(_("Correct") if result else _("WRONG") + f'! This is {student_name}')
+        self.question_text.set((_("Correct") if result else _("WRONG")) + _('! This is {}').format(student_name))
         self.student_correct_count.set(f'{correct}')
         self.student_wrong_count.set(f'{wrong}')
         self.bind_next()
