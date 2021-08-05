@@ -18,27 +18,26 @@ class QuizView:
                                            bd=2, bg="grey", relief="ridge")
 
         self.question_text: StringVar = StringVar(self.master, name='Question text')
-        self.question_text.set('Waiting for quiz to start')
+        self.question_text.set(_('Waiting for quiz to start'))
         self.question = Label(master=self.quiz_frame, textvariable=self.question_text)
 
         # the scoreboard
         self.student_score_frame: Frame = Frame(self.quiz_frame)
         self.student_correct_count: StringVar = StringVar(self.master, name='Correct Count')
         self.student_correct_count.set('0')
-        self.student_correct_label = Label(master=self.student_score_frame, text='Correct')
+        self.student_correct_label = Label(master=self.student_score_frame, text=_('Correct'))
         self.student_correct_count_label = Label(master=self.student_score_frame,
                                                  textvariable=self.student_correct_count)
         self.student_wrong_count: StringVar = StringVar(self.master, name='Wrong Count')
         self.student_wrong_count.set('0')
-        self.student_wrong_label = Label(master=self.student_score_frame, text='Wrong')
+        self.student_wrong_label = Label(master=self.student_score_frame, text=_('Wrong'))
         self.student_wrong_count_label = Label(master=self.student_score_frame,
                                                textvariable=self.student_wrong_count)
 
         self.button_frame = Frame(self.quiz_frame)
-        self.button_start = Button(master=self.button_frame, text='Start Quiz', width=10, command=start_command)
-        self.button_quit = Button(master=self.button_frame, text='Exit Quiz', width=10, command=self.master.destroy)
-
-        self.button_next = Button(master=self.quiz_frame, text='Next student', width=50)
+        self.button_start = Button(master=self.button_frame, text=_('Start Quiz'), width=10, command=start_command)
+        self.button_quit = Button(master=self.button_frame, text=_('Exit Quiz'), width=10, command=self.master.destroy)
+        self.button_next = Button(master=self.quiz_frame, text=_('Next student'), width=50)
 
         self.quiz_frame.grid(row=0, column=0)
         self.student_image_canvas.grid(row=0, column=1, rowspan=2)
@@ -64,7 +63,7 @@ class QuizView:
         self.button_start.config(text=text)
 
     def clear_window(self):
-        self.question_text.set('--- Waiting to start game ---')
+        self.question_text.set(_('--- Waiting to start game ---'))
         self.student_image_canvas.delete("all")
         self.unbind_next()
 
@@ -75,13 +74,13 @@ class QuizView:
 
     def show_student_result(self, result: bool, student_name: str, correct: int, wrong: int):
         self.student_image_canvas.config(background=f'{"green" if result else "red"}')
-        self.question_text.set(f'{"Correct" if result else "WRONG"}! This is {student_name} ')
+        self.question_text.set((_("Correct") if result else _("WRONG")) + _('! This is {}').format(student_name))
         self.student_correct_count.set(f'{correct}')
         self.student_wrong_count.set(f'{wrong}')
         self.bind_next()
 
     def ask_question(self, *args, **kwargs):
-        self.question_text.set('Who is this student?')
+        self.question_text.set(_('Who is this student?'))
         self.unbind_next()
 
     def show_final_score(self, correct: int, wrong: int):
@@ -101,7 +100,7 @@ class QuizView:
             self.student_image_canvas.config(background="green")
 
         self.student_image_canvas.create_text(200, 200,
-                                              text=f'{correct_percentage}% correct',
+                                              text=_('{cp}% correct').format(cp=correct_percentage),
                                               font=("Helvetica", 50),
                                               fill=text_color,
                                               anchor='center')

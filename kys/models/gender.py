@@ -12,7 +12,7 @@ class Gender:
         self.gender: int = gender
 
     def __str__(self):
-        return self.GENDER_STRINGS[self.gender]
+        return self.GENDER_STRINGS[_(self.gender)]
 
     def __eq__(self, other):
         if isinstance(other, Gender):

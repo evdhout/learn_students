@@ -13,7 +13,7 @@ class TypeView(QuizView):
         super().__init__(master_view=master_view,
                          start_command=start_command,
                          next_command=next_command,
-                         title="KYS - Know Your Students! - Typing Test")
+                         title=_('KYS - Know Your Students! - Typing Test'))
         self.enter_command: Callable = enter_command
 
         self.name_entry_value = StringVar(master=self.master, name='Name Entry Value')
