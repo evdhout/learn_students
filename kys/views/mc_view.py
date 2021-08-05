@@ -13,7 +13,7 @@ class MCView(QuizView):
         super().__init__(master_view=master_view,
                          start_command=start_command,
                          next_command=next_command,
-                         title="KYS - Know Your Students! - Multiple Choice Test")
+                         title=_("KYS - Know Your Students! - Multiple Choice Test"))
 
         self.choice_button_command = choice_button_command
 

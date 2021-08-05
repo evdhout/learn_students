@@ -7,7 +7,7 @@ from typing import Callable
 class MainView:
     def __init__(self):
         self.root = Tk()
-        self.root.title("KYS - Know Your Students!")
+        self.root.title(_("KYS - Know Your Students!"))
 
         self.mainframe = ttk.Frame(self.root, padding="3 3 12 12")
         self.mainframe.grid(column=0, row=0)
@@ -16,11 +16,11 @@ class MainView:
 
         self.mc_button_image: Image = Image.open('resources/kys-mc-button.png')
         self.mc_button_image_tk: ImageTk = ImageTk.PhotoImage(self.mc_button_image, master=self.root)
-        self.mc_button = Button(self.mainframe, text="Multiple Choice Quiz", image=self.mc_button_image_tk, compound=TOP)
+        self.mc_button = Button(self.mainframe, text=_("Multiple Choice Quiz"), image=self.mc_button_image_tk, compound=TOP)
 
         self.type_button_image: Image = Image.open('resources/kys-type-button.png')
         self.type_button_image_tk: ImageTk = ImageTk.PhotoImage(self.type_button_image, master=self.root)
-        self.type_button = Button(self.mainframe, text="Type Quiz", image=self.type_button_image_tk, compound=TOP)
+        self.type_button = Button(self.mainframe, text=_("Type Quiz"), image=self.type_button_image_tk, compound=TOP)
 
         self.mc_button.grid(column=1, row=2)
         self.type_button.grid(column=2, row=2)

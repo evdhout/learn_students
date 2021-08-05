@@ -24,7 +24,7 @@ class QuizController:
         self.quiz_view.set_score()
         self.students_iterator = iter(self.students)
         self.show_next_student()
-        self.quiz_view.update_start_button(text='Restart Quiz')
+        self.quiz_view.update_start_button(text=_('Restart Quiz'))
 
     def show_next_student(self):
         try:

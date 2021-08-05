@@ -1,3 +1,4 @@
+import gettext
 import random
 from collections import deque
 from kys.models.student import Student
@@ -16,12 +17,14 @@ class Students:
 
     def __str__(self) -> str:
         student_count = len(self.students)
-        if 0 == student_count:
-            return 'No students registered'
-        elif 1 == student_count:
-            return '1 student registered'
-        else:
-            return f'{student_count} students registered'
+        return gettext.ngettext('{n} student registered', '{n} students registered',
+                                student_count).format(n=student_count)
+        # if 0 == student_count:
+        #     return ('No students registered')
+        # elif 1 == student_count:
+        #     return '1 student registered'
+        # else:
+        #     return f'{student_count} students registered'
 
     def __iter__(self):
         self.student_queue = deque([*self.students])
