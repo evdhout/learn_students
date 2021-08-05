@@ -11,9 +11,9 @@ class Configuration:
         self.picture: {str: str} = {}
         self.language: {str: str} = {}
 
-        parser = argparse.ArgumentParser(description=_('Know Your Students (KYS): train student names from pictures'))
+        parser = argparse.ArgumentParser(description='Know Your Students (KYS): train student names from pictures')
         parser.add_argument('-c', '--config', type=self._arg_file_exists, default='data/config.ini',
-                            help=_('Path to configuration file'))
+                            help='Path to configuration file')
         args = parser.parse_args()
         self.parse_ini(args.config)
 
