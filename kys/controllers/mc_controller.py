@@ -43,16 +43,16 @@ class MCController(QuizController):
         self.current_student_list.extend(self.students.get_random_student_alternatives(student=self.current_student,
                                                                                        count=2))
         shuffle(self.current_student_list)
-        print(f'Chosen student: {self.current_student.get_full_name()}')
-        print([s.get_full_name() for s in self.current_student_list])
+        # print(f'Chosen student: {self.current_student.get_full_name()}')
+        # print([s.get_full_name() for s in self.current_student_list])
 
         self.quiz_view.ask_question(student_names=[s.get_full_name() for s in self.current_student_list])
 
     def chosen_student_name(self, chosen: str):
-        print(f'button {chosen} clicked')
+        # print(f'button {chosen} clicked')
         chosen_student: Student = self.current_student_list[MCController.OPTION[chosen]]
-        print(f'Chosen student = {chosen_student.get_full_name()}')
-        print(f'Shown student  = {self.current_student.get_full_name()}')
+        # print(f'Chosen student = {chosen_student.get_full_name()}')
+        # print(f'Shown student  = {self.current_student.get_full_name()}')
         result = chosen_student == self.current_student
         if result:
             self.total_correct_names += 1

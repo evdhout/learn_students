@@ -9,13 +9,19 @@ class Configuration:
         self.csv: {str: str} = {}
         self.gender: {str: str} = {}
         self.picture: {str: str} = {}
-        self.language: {str: str} = {}
+        self.kys: {str: str} = {}
+        self.config_read = False
+        self.config_file = ''
 
         parser = argparse.ArgumentParser(description='Know Your Students (KYS): train student names from pictures')
         parser.add_argument('-c', '--config', type=self._arg_file_exists, default='data/config.ini',
                             help='Path to configuration file')
         args = parser.parse_args()
-        self.parse_ini(args.config)
+
+        try:
+            self.parse_ini(ini=self.file_exists(args.config))
+        except FileNotFoundError:
+            return
 
     def parse_ini(self, ini: str):
         config = configparser.ConfigParser(interpolation=configparser.ExtendedInterpolation())
@@ -24,7 +30,9 @@ class Configuration:
         self.csv: {str: str} = {n: v for n, v in config.items('CSV')}
         self.gender: {str: str} = {n: v for n, v in config.items('Gender')}
         self.picture: {str: str} = {n: v for n, v in config.items('Picture')}
-        self.language: {str: str} = {n: v for n, v in config.items('Language')}
+        self.kys: {str: str} = {n: v for n, v in config.items('KYS')}
+        self.config_read = True
+        self.config_file = ini
 
     def __str__(self):
         return(f'Path: {self.path}\n'

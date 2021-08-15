@@ -22,7 +22,7 @@ class TypeController(QuizController):
 
     def check_student_name(self):
         typed_name = self.quiz_view.get_name_entry_value()
-        print(typed_name)
+        # print(typed_name)
         if typed_name.lower() == self.current_student.first_name.lower():
             self.total_correct_names += 1
             result = True

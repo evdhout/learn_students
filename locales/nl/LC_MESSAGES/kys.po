@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-05 15:12+0200\n"
-"PO-Revision-Date: 2021-08-05 15:25+0200\n"
+"POT-Creation-Date: 2021-08-15 15:46+0200\n"
+"PO-Revision-Date: 2021-08-15 15:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: kys/models/configuration.py:46
+#: kys/models/configuration.py:54
 msgid "{} is not a valid path"
 msgstr "{} is geen valide pad"
 
-#: kys/models/configuration.py:59
+#: kys/models/configuration.py:67
 msgid "{} is not a valid file"
 msgstr "{} is geen valide bestand"
 
@@ -32,6 +32,30 @@ msgid "{n} student registered"
 msgid_plural "{n} students registered"
 msgstr[0] "{n} student geregistreerd"
 msgstr[1] "{n} studenten geregistreerd"
+
+#: kys/controllers/main_controller.py:41
+msgid "Group File"
+msgstr "Groepsbestand"
+
+#: kys/controllers/main_controller.py:42
+msgid "Select group ini file"
+msgstr "Kies groep ini-bestand"
+
+#: kys/controllers/main_controller.py:50
+msgid "Group file {} does not exist"
+msgstr "Groep bestand {} bestaat niet"
+
+#: kys/controllers/main_controller.py:51
+msgid "Group init error"
+msgstr "Groep initialisatie fout"
+
+#: kys/controllers/main_controller.py:56
+msgid "Section in group file {} does not exist"
+msgstr "Sectie in groepsbestand {} bestaat niet"
+
+#: kys/controllers/main_controller.py:57
+msgid "Group section error"
+msgstr "Groep sectie fout"
 
 #: kys/controllers/quiz_controller.py:27
 msgid "Restart Quiz"
@@ -86,17 +110,25 @@ msgstr "Wie is deze student?"
 msgid "{cp}% correct"
 msgstr "{cp}% goed"
 
-#: kys/views/main_view.py:10
+#: kys/views/main_view.py:11
 msgid "KYS - Know Your Students!"
 msgstr "KYS - Ken jouw studenten!"
 
-#: kys/views/main_view.py:19
+#: kys/views/main_view.py:22
+msgid "Select Group"
+msgstr "Kies groep"
+
+#: kys/views/main_view.py:27
 msgid "Multiple Choice Quiz"
 msgstr "Meerkeuzetoets"
 
-#: kys/views/main_view.py:23
+#: kys/views/main_view.py:33
 msgid "Type Quiz"
 msgstr "Typetoets"
+
+#: kys/views/main_view.py:48
+msgid "Group: {}"
+msgstr "Groep: {}"
 
 #: kys/views/type_view.py:16
 msgid "KYS - Know Your Students! - Typing Test"

@@ -29,7 +29,7 @@ class Student:
         return int(self.id)
 
     def get_full_name(self) -> str:
-        return f'{self.first_name} {f"{self.infix} " if self.infix else ""}{self.last_name}'
+        return f'{self.first_name} <{f"{self.infix} " if self.infix else ""}{self.last_name}>'
 
     def is_female(self) -> bool:
         return self.gender == Gender.FEMALE
