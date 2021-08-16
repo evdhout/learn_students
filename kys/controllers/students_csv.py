@@ -15,7 +15,7 @@ class StudentsCSV:
         self._read_csv()
 
     def _read_csv(self):
-        student_csv = Configuration.file_exists(self.config.csv["student_csv"])
+        student_csv = self.config.get_resource_path(self.config.csv["student_csv"])
 
         with open(student_csv) as csv_file:
             reader = csv.DictReader(csv_file, delimiter=self.config.csv['delimiter'])
@@ -31,15 +31,15 @@ class StudentsCSV:
                             date_of_birth=datetime.datetime.strptime(
                                 row[self.config.csv['date_of_birth']],
                                 self.config.csv['date_of_birth_format']).date(),
-                            picture=self._create_filename(row[self.config.csv['student_id']])
+                            picture=self._create_student_image_filename(row[self.config.csv['student_id']])
                             )
                 )
 
-    def _create_filename(self, student_id: str) -> str:
-        return Configuration.file_exists((f"{self.config.path['group_path']}/{self.config.picture['prefix']}"
-                                          f"{student_id}{self.config.picture['suffix']}"
-                                          f".{self.config.picture['extension']}"
-                                          ))
+    def _create_student_image_filename(self, student_id: str) -> str:
+        return self.config.get_resource_path((f"{self.config.path['group_path']}/{self.config.picture['prefix']}"
+                                              f"{student_id}{self.config.picture['suffix']}"
+                                              f".{self.config.picture['extension']}"
+                                              ))
 
     def _get_gender(self, gender: str) -> Gender:
         if gender == self.config.gender['female']:
