@@ -1,6 +1,6 @@
 from tkinter import Toplevel, Label, Button, Canvas, StringVar, Frame
 from PIL import ImageTk
-from kys.views.main_view import MainView
+from src.views.main_view import MainView
 from typing import Callable
 
 

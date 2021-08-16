@@ -1,6 +1,6 @@
 from PIL import ImageTk, Image
 from datetime import date
-from kys.models.gender import Gender
+from src.models.gender import Gender
 
 
 class Student:

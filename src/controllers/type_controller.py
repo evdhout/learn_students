@@ -1,7 +1,7 @@
-from kys.models.students import Students
-from kys.views.main_view import MainView
-from kys.views.type_view import TypeView
-from kys.controllers.quiz_controller import QuizController
+from src.models.students import Students
+from src.views.main_view import MainView
+from src.views.type_view import TypeView
+from src.controllers.quiz_controller import QuizController
 
 
 class TypeController(QuizController):

@@ -4,8 +4,9 @@ import argparse
 
 
 class Configuration:
-    def __init__(self, base_path: Path = None):
-        self.base_path: Path = base_path
+    def __init__(self, app_path: Path = None):
+        self.app_path: Path = app_path
+        self.group_path: Path or None = None
         self.path: {str: str} = {}
         self.csv: {str: str} = {}
         self.gender: {str: str} = {}
@@ -23,12 +24,16 @@ class Configuration:
 
     def parse_ini(self, ini: str):
         config = configparser.ConfigParser(interpolation=configparser.ExtendedInterpolation())
-        config.read(self.get_resource_path(ini))
-        self.path: {str: str} = {n: v for n, v in config.items('Path')}
+        ini_file = Path(self.get_resource_path(ini))
+        config.read(ini_file)
         self.csv: {str: str} = {n: v for n, v in config.items('CSV')}
         self.gender: {str: str} = {n: v for n, v in config.items('Gender')}
         self.picture: {str: str} = {n: v for n, v in config.items('Picture')}
         self.kys: {str: str} = {n: v for n, v in config.items('KYS')}
+
+        self.group_path = Path(self.kys.get('group_path', ini_file.parent))
+        if not self.group_path.is_absolute():
+            self.group_path = ini_file.parent / self.group_path
 
     def __str__(self):
         return(f'Path: {self.path}\n'
@@ -57,10 +62,13 @@ class Configuration:
         return Path(pathname).is_dir()
 
     def get_resource_path(self, path: str) -> str:
-        file = Path(path).expanduser()
-        if not file.is_absolute():
-            file = self.base_path / file
-        return str(file)
+        # print(f'GRP path = {path}')
+        resource_path = Path(path).expanduser()
+        # print(f'GRP resource path = {resource_path}')
+        if not resource_path.is_absolute():
+            resource_path = self.app_path / resource_path
+            # print(f'GRP absolute resource path = {resource_path}')
+        return str(resource_path)
 
     def is_config_read(self) -> bool:
         return bool(self.kys)

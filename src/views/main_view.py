@@ -1,10 +1,10 @@
-import os
+import sys
 import platform
 from tkinter import Tk, messagebox, TOP, EW, NSEW
 from tkinter import ttk
 from PIL import Image, ImageTk
 from typing import Callable
-from kys.models.configuration import Configuration
+from src.models.configuration import Configuration
 
 
 class MainView:
@@ -28,7 +28,7 @@ class MainView:
                 title=_('Fatal error'),
                 icon='error',
                 detail=str(e))
-            exit()
+            sys.exit()
 
         self.mainframe = ttk.Frame(self.root, padding="3 3 12 12")
         self.mainframe.grid(column=0, row=0)

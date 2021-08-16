@@ -2,12 +2,12 @@ import configparser
 from pathlib import Path
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
-from kys.controllers.mc_controller import MCController
-from kys.controllers.type_controller import TypeController
-from kys.controllers.students_csv import StudentsCSV
-from kys.models.configuration import Configuration
-from kys.models.students import Students
-from kys.views.main_view import MainView
+from src.controllers.mc_controller import MCController
+from src.controllers.type_controller import TypeController
+from src.controllers.students_csv import StudentsCSV
+from src.models.configuration import Configuration
+from src.models.students import Students
+from src.views.main_view import MainView
 
 
 class MainController:
@@ -40,8 +40,9 @@ class MainController:
         self.main_view.set_group_name(group_name=self.config.kys.get('group_name', '__CONFIG__'))
 
     def load_group(self):
-        group_file = self.config.get_resource_path(filedialog.askopenfilename(filetypes=[(_('Group File'), ".ini")],
-                                                                              title=_('Select group ini file')))
+        filename = filedialog.askopenfilename(filetypes=[(_('Group File'), ".ini")],
+                                              title=_('Select group ini file'))
+        group_file = self.config.get_resource_path(filename)
         if not self.config.file_exists(group_file):
             messagebox.showerror(message=_('Group file {} does not exist').format(Path(group_file).stem),
                                  title=_('Group init error'),

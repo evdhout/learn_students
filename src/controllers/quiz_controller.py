@@ -1,7 +1,7 @@
-from kys.views.main_view import MainView
-from kys.models.students import Students
-from kys.models.student import Student
-from kys.views.quiz_view import QuizView
+from src.views.main_view import MainView
+from src.models.students import Students
+from src.models.student import Student
+from src.views.quiz_view import QuizView
 
 
 class QuizController:

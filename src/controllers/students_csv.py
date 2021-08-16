@@ -1,21 +1,27 @@
 import csv
 import datetime
+from pathlib import Path
 
-from kys.models.configuration import Configuration
-from kys.models.gender import Gender
-from kys.models.student import Student
-from kys.models.students import Students
+from src.models.configuration import Configuration
+from src.models.gender import Gender
+from src.models.student import Student
+from src.models.students import Students
 
 
 class StudentsCSV:
     def __init__(self, students: Students, config: Configuration):
         self.students: Students = students
         self.config: Configuration = config
-
         self._read_csv()
 
+    def get_resource_path(self, path: str):
+        full_path = Path(path).expanduser()
+        if not full_path.is_absolute():
+            full_path = self.config.group_path / full_path
+        return str(full_path)
+
     def _read_csv(self):
-        student_csv = self.config.get_resource_path(self.config.csv["student_csv"])
+        student_csv = self.get_resource_path(self.config.csv["student_csv"])
 
         with open(student_csv) as csv_file:
             reader = csv.DictReader(csv_file, delimiter=self.config.csv['delimiter'])
@@ -36,10 +42,11 @@ class StudentsCSV:
                 )
 
     def _create_student_image_filename(self, student_id: str) -> str:
-        return self.config.get_resource_path((f"{self.config.path['group_path']}/{self.config.picture['prefix']}"
-                                              f"{student_id}{self.config.picture['suffix']}"
-                                              f".{self.config.picture['extension']}"
-                                              ))
+        return self.get_resource_path((
+            f"{self.config.group_path}/"
+            f"{self.config.picture['prefix']}{student_id}{self.config.picture['suffix']}"
+            f".{self.config.picture['extension']}"
+            ))
 
     def _get_gender(self, gender: str) -> Gender:
         if gender == self.config.gender['female']:

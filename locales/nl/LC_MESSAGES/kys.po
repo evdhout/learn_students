@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-15 15:46+0200\n"
-"PO-Revision-Date: 2021-08-15 15:48+0200\n"
+"POT-Creation-Date: 2021-08-16 13:43+0200\n"
+"PO-Revision-Date: 2021-08-16 13:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -18,119 +18,135 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: kys/models/configuration.py:54
+#: src/models/configuration.py:47
 msgid "{} is not a valid path"
 msgstr "{} is geen valide pad"
 
-#: kys/models/configuration.py:67
+#: src/models/configuration.py:53
 msgid "{} is not a valid file"
 msgstr "{} is geen valide bestand"
 
-#: kys/models/students.py:20
+#: src/models/students.py:20
 #, python-brace-format
 msgid "{n} student registered"
 msgid_plural "{n} students registered"
 msgstr[0] "{n} student geregistreerd"
 msgstr[1] "{n} studenten geregistreerd"
 
-#: kys/controllers/main_controller.py:41
+#: src/controllers/main_controller.py:33
+msgid "Student CSV file {} does not exist"
+msgstr "Groepsbestand {} bestaat niet"
+
+#: src/controllers/main_controller.py:34
+msgid "Error reading Students"
+msgstr "Fouten tijdens lezen van studenten"
+
+#: src/controllers/main_controller.py:44
 msgid "Group File"
 msgstr "Groepsbestand"
 
-#: kys/controllers/main_controller.py:42
+#: src/controllers/main_controller.py:45
 msgid "Select group ini file"
 msgstr "Kies groep ini-bestand"
 
-#: kys/controllers/main_controller.py:50
+#: src/controllers/main_controller.py:48
 msgid "Group file {} does not exist"
 msgstr "Groep bestand {} bestaat niet"
 
-#: kys/controllers/main_controller.py:51
+#: src/controllers/main_controller.py:49
 msgid "Group init error"
 msgstr "Groep initialisatie fout"
 
-#: kys/controllers/main_controller.py:56
+#: src/controllers/main_controller.py:57
 msgid "Section in group file {} does not exist"
 msgstr "Sectie in groepsbestand {} bestaat niet"
 
-#: kys/controllers/main_controller.py:57
+#: src/controllers/main_controller.py:58
 msgid "Group section error"
 msgstr "Groep sectie fout"
 
-#: kys/controllers/quiz_controller.py:27
+#: src/controllers/quiz_controller.py:27
 msgid "Restart Quiz"
 msgstr "Herstart Toets"
 
-#: kys/views/mc_view.py:16
+#: src/views/mc_view.py:16
 msgid "KYS - Know Your Students! - Multiple Choice Test"
 msgstr "KYS - Ken jouw studenten! - Meerkeuzetoets"
 
-#: kys/views/quiz_view.py:21
+#: src/views/quiz_view.py:21
 msgid "Waiting for quiz to start"
 msgstr "Wachtend op de start van de toets"
 
-#: kys/views/quiz_view.py:28 kys/views/quiz_view.py:77
+#: src/views/quiz_view.py:28 src/views/quiz_view.py:77
 msgid "Correct"
 msgstr "Juist"
 
-#: kys/views/quiz_view.py:33
+#: src/views/quiz_view.py:33
 msgid "Wrong"
 msgstr "Fout"
 
-#: kys/views/quiz_view.py:38
+#: src/views/quiz_view.py:38
 msgid "Start Quiz"
 msgstr "Start toets"
 
-#: kys/views/quiz_view.py:39
+#: src/views/quiz_view.py:39
 msgid "Exit Quiz"
 msgstr "Beëindig toets"
 
-#: kys/views/quiz_view.py:40
+#: src/views/quiz_view.py:40
 msgid "Next student"
 msgstr "Volgende student"
 
-#: kys/views/quiz_view.py:66
+#: src/views/quiz_view.py:66
 msgid "--- Waiting to start game ---"
 msgstr "— Wachtend op de start van de toets —"
 
-#: kys/views/quiz_view.py:77
+#: src/views/quiz_view.py:77
 msgid "WRONG"
 msgstr "FOUT"
 
-#: kys/views/quiz_view.py:77
+#: src/views/quiz_view.py:77
 msgid "! This is {}"
 msgstr "! Dit is {}"
 
-#: kys/views/quiz_view.py:83
+#: src/views/quiz_view.py:83
 msgid "Who is this student?"
 msgstr "Wie is deze student?"
 
-#: kys/views/quiz_view.py:103
+#: src/views/quiz_view.py:103
 #, python-format, python-brace-format
 msgid "{cp}% correct"
 msgstr "{cp}% goed"
 
-#: kys/views/main_view.py:11
+#: src/views/main_view.py:14
 msgid "KYS - Know Your Students!"
 msgstr "KYS - Ken jouw studenten!"
 
-#: kys/views/main_view.py:22
+#: src/views/main_view.py:27
+msgid "Error opening button image"
+msgstr "Fout bij het openen een knopafbeelding"
+
+#: src/views/main_view.py:28
+msgid "Fatal error"
+msgstr "Fatale fout"
+
+#: src/views/main_view.py:36
 msgid "Select Group"
 msgstr "Kies groep"
 
-#: kys/views/main_view.py:27
+#: src/views/main_view.py:40
 msgid "Multiple Choice Quiz"
 msgstr "Meerkeuzetoets"
 
-#: kys/views/main_view.py:33
+#: src/views/main_view.py:45
 msgid "Type Quiz"
 msgstr "Typetoets"
 
-#: kys/views/main_view.py:48
+#: src/views/main_view.py:60
 msgid "Group: {}"
 msgstr "Groep: {}"
 
-#: kys/views/type_view.py:16
+#: src/views/type_view.py:16
 msgid "KYS - Know Your Students! - Typing Test"
 msgstr "KYS - Ken jouw studenten - Type toets"
 

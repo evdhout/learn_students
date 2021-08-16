@@ -1,8 +1,8 @@
 import gettext
 import random
 from collections import deque
-from kys.models.student import Student
-from kys.models.gender import Gender
+from src.models.student import Student
+from src.models.gender import Gender
 
 
 class Students:

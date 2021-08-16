@@ -1,8 +1,8 @@
 from typing import Callable
 from tkinter import StringVar, Entry
 
-from kys.views.main_view import MainView
-from kys.views.quiz_view import QuizView
+from src.views.main_view import MainView
+from src.views.quiz_view import QuizView
 
 
 class TypeView(QuizView):

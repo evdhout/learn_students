@@ -1,11 +1,11 @@
 from enum import Enum
 from random import shuffle
 
-from kys.models.student import Student
-from kys.models.students import Students
-from kys.views.mc_view import MCView
-from kys.views.main_view import MainView
-from kys.controllers.quiz_controller import QuizController
+from src.models.student import Student
+from src.models.students import Students
+from src.views.mc_view import MCView
+from src.views.main_view import MainView
+from src.controllers.quiz_controller import QuizController
 
 
 class ButtonStyle(Enum):
